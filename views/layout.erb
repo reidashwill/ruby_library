@@ -6,8 +6,26 @@
   </head>
   <body>
     <div class="container">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">Tyler and Reid's Library</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/home">Home</a></li>
+            <li><a href="/books">Our Books</a></li>
+            <li><a href="/authors">Our Authors</a></li>
+          </ul>
+        </div>
+</nav>
       <%= yield %>
+      
+      <form class="form-group" action="books/search_results" method="get">
+        <input class="form-control" id="book_search" name="book_search" type="text" placeholder="Search by book">
+        <button class="btn-success" type="submit">Submit</button>
+
     </div>
   </body>
 </html> 
-  
+
+

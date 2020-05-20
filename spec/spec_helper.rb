@@ -2,7 +2,7 @@ require 'rspec'
 require 'pg'
 require 'author'
 require 'book'
-# require 'consumer'
+require 'consumer'
 require 'pry'
 
 

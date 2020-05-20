@@ -61,5 +61,44 @@ class Book
     end
     result
   end
-  
+
 end
+  
+#   def self.find_by_author
+#     books = []
+#     returned_books = DB.exec("SELECT athletes.* FROM sponsors
+# JOIN endorsements ON (sponsors.id = endorsements.sponsor_id)
+# JOIN athletes ON (endorsements.athlete_id = athletes.id)
+# WHERE sponsors.id = 1;")
+#     returned_books.each() do |book|
+
+
+  # def self.find_by_author(auth_id)
+  #   books = []
+  #   returned_books = DB.exec("SELECT * FROM authors_books WHERE author_id = #{auth_id};")
+  #   binding.pry
+  #   returned_books.each() do |book|
+  #     # name = book.fetch("name")
+  #     book.any?
+  #       book_id = book.fetch("id").to_i
+  #       book_to_push = DB.exec("select * FROM books WHERE id = #{book_id}")
+  #     name = book.fetch("name")
+  #     id = book_to_push.fetch("id")
+  #     books.push(Book.new({:name => name, :id => id}))
+  #   end
+  #  books
+  # end
+
+  
+
+
+# def self.find_by_artist(art_id)
+  #   albums = []
+  #   returned_albums = DB.exec("SELECT * FROM albums_artists WHERE artist_id = #{art_id};")
+  #   returned_albums.each() do |album|
+  #   name = album.fetch("name")
+  #   id = album.fetch('id').to_i
+  #   albums.push(Album.new({:name => name, :artist_id => art_id, :id => id}))
+  #   end
+  #   albums
+  # end

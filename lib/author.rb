@@ -36,9 +36,13 @@ class Author
 
   def update(name)
     @name = name
-    DB.exec("UPDATE authors SET name = '#{name}' WHERE id = #{id};")
+    DB.exec("UPDATE authors SET name = '#{name}' WHERE id = #{@id};")
   end 
-  
+
+  def bind_to_book(book_id)
+    DB.exec("INSERT INTO authors_books (book_id, author_id) VALUES (#{book_id}, #{@id});")
+  end
+
   # def update(attributes)
   #   if (attributes.has_key?(:name)) && (attributes.fetch(:name) != nil)
   #     @name = attributes.fetch(:name)
