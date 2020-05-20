@@ -10,6 +10,29 @@ This app will allow users to navigate a library system.
 
 ## Specs
 
+1  Full CRUD functionality for book class
+
+2  Full CRUD functionality for consumer class
+
+3 Consumer class to include parameter for "librarian" permissions
+
+4  Books can have many authors
+
+5  Authors can have many books
+
+6  search for book by author or title
+
+7  patrons can "check out" books
+
+8 patrons can "return" books
+
+9  show list of all books a user previously "checked out"
+
+10  add timestamp to books at checkout which indicates its due date
+
+11  search functionality for librarian to check for overdue books
+
+
 
 
 ## Setup/Installation Requirements
