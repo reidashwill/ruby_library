@@ -89,10 +89,7 @@ get('/books/:id/checkout') do
 end
 
 post('/books/:id/checkout') do
-  username = params[:username]
-  
-  book = Book.find(params[:id].to_i)
-
+redirect to('/home')
 end
 
 patch('/books/:id/edit') do
