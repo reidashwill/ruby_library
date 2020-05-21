@@ -1,4 +1,11 @@
 <h3><%= @book.name %></h3>
 
-<h3> "Are you sure you want to checkout this book?"</h3>
+
+<div class="form-group">
+  <form action="/books/:id/checkout" method="post">
+    <label for="username">Enter your username to proceed:</label>
+    <input type="text" name="username" id="username" class="form-control">
+    <button class="btn-success">Checkout</button>
+  </form>
+</div>
 

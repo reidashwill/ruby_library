@@ -3,10 +3,16 @@
 <form action="/books/<%= @book.id %>/edit" method="post">
   <input name="_method" type="hidden" value="patch">
   <input id="book_name" name="book_name" type="text">
-  <button type="submit">Update Title</button>
+  <button type="submit" class="btn-success">Update title</button>
 </form>
-
+<br>
+<form action="/books/<%= @book.id %>/add_author" method="post">
+  <input name=_method type="hidden" value="post">
+  <input id="book_author" name="book_author" type="text">
+  <button type="submit" class="btn-success">Add Author</button>
+</form>
+<br>
 <form action="/books/<%= @book.id %>" method="post">
   <input name="_method" type="hidden" value="delete">
-  <button type="submit">Delete Book?</button>
+  <button type="submit" class="btn-success">Delete Book?</button>
 </form>

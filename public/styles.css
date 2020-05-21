@@ -1,0 +1,26 @@
+body{
+  background: lightslategrey;
+  /* color: white; */
+}
+
+/* .navbar .nav .navbar-nav{
+  background-color: gray;
+  color: black;
+}
+.navbar-header{
+  background-color: gray;
+  color:black;
+} */
+
+#g {
+  margin-top: 1%;
+}
+
+#f {
+  background-color: linen;
+  color: black;
+}
+
+.form-group {
+  color: black;
+}

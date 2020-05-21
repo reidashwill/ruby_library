@@ -10,17 +10,17 @@ This app will allow users to navigate a library system.
 
 ## Specs
 
-1  Full CRUD functionality for book class
+1 x Full CRUD functionality for book class
 
-2  Full CRUD functionality for consumer class
+2 x Full CRUD functionality for consumer class
 
-3 Consumer class to include parameter for "librarian" permissions
+3 x Consumer class to include parameter for "librarian" permissions
 
-4  Books can have many authors
+4 x Books can have many authors
 
-5  Authors can have many books
+5 x Authors can have many books
 
-6  search for book by author or title
+6 x search for book by author or title
 
 7  patrons can "check out" books
 
