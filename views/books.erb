@@ -1,0 +1,11 @@
+<h3>Books available for checkout</h3>
+
+<% if @books %>
+<ul>
+  <% @books.each do |book|%>
+  <li><a href="/books/<%= book.id%>"><%= book.name %></a></li>
+  <% end %>
+</ul>
+<% else %>
+  <p>There are currently no books available for checkout. Please check back later.</p>
+<% end %>
