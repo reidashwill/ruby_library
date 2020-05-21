@@ -1,0 +1,12 @@
+<h3><%= @book.name %></h3>
+<% @book.authors.each do |author| %>
+</p>Written by: <%= author.name%></p>
+<% end %>
+
+<form action="/book/<%= @book.id %>/checkout" method="get">
+  <input name="_method" type="hidden" value="get">
+  <button type="submit">Checkout Book</button>
+</form>
+
+<h4><a href="/book/<%= @book.id %>/checkout"><button class="btn-success">Checkout Book</button></a></h4>
+

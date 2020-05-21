@@ -6,6 +6,19 @@
   <div class="form-group">
     <label for="book_name">Enter a book title</label>
     <input type="text" name="book_name" id="book" class="form-control">
+    <label for="author_name">Enter the book's author</label>
+    <input type="text" name="book_author" id="book" class="form-control">
   </div>
   <button class="btn-success">List book</button>
 </form>
+
+<h4>These are the books currently in our inventory</h4>
+<% if @books %>
+<ul>
+  <% @books.each do |book|%>
+  <li><a href="/books/<%= book.id%>/edit"><%= book.name %></a></li>
+  <% end %>
+</ul>
+<% else %>
+  <p>There are currently no books in inventory.</p>
+<% end %>

@@ -1,0 +1,12 @@
+<%if @results.length >= 1 %>
+  <ul>
+    <% @results.each do |book| %>
+    <li><a href="/books/<%= book.id%>"><%= book.name %></a></li>
+  
+  <% end %>
+  </ul>
+<% else %>  
+<p>We don't have any books that match this search!</p>
+<% end %>
+
+ 

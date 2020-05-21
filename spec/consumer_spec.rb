@@ -77,5 +77,18 @@ describe '#Consumer' do
     end
   end
 
+  describe('checked_out') do
+    it('will show all books that have been checked out by a consumer') do
+      consumer = Consumer.new({:name => "Reid Ashwill", :id => nil})
+      consumer.save()
+      book = Book.new({:name => "Foundation", :id => nil})
+      book.save()
+      book2 = Book.new({:name => "Invisibles", :id => nil})
+      book2.save()
+      consumer.checkout(book.id)
+      consumer.checkout(book2.id)
+      expect(consumer.checked_out).to(eq([book, book2]))
+    end
+  end
 
 end

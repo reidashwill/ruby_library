@@ -77,4 +77,14 @@ describe'#Book' do
     end
   end
 
+  describe('#bind_to_author') do
+    it('will create a relationship between a book and an author in our join table named "authors_books') do
+      author1 = Author.new({:name => "Issac Asimov", :id => nil})
+      author1.save()
+      book = Book.new({:name => "Foundation", :id => nil})
+      book.save()
+      book.bind_to_author(author1.id)
+      expect(book.authors).to(eq([author1]))
+    end
+  end
 end

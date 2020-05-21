@@ -40,8 +40,13 @@ class Book
   end
 
   def delete 
+    DB.exec("DELETE FROM checkouts WHERE book_id = #{@id};")
     DB.exec("DELETE FROM authors_books WHERE book_id = #{@id};")
     DB.exec("DELETE FROM books WHERE id = #{@id};")
+  end
+
+  def bind_to_author(author_id)
+    DB.exec("INSERT INTO authors_books (author_id, book_id) VALUES (#{author_id}, #{@id});") 
   end
 
   def ==(book_to_compare)
@@ -49,56 +54,40 @@ class Book
   end
 
   def self.search(search_name)
-    book_names = Book.all.map { |b| b.name.downcase }
-    result = []
-    names = book_names.grep(/#{search_name.downcase}/)
-    names.each do |n|
-      book = DB.exec("SELECT * FROM books WHERE lower(name) = '#{n}'").first
-      name = book.fetch("name")
-      id = book.fetch("id")
-      return_book = Book.new({:name => name, :id => id})
-      result.push(return_book)
+    @books = DB.exec("SELECT * FROM books WHERE name ILIKE '%#{search_name}%';")
+    @result = []
+    @books.each do |b|
+      name = b.fetch("name")
+      id = b.fetch("id")
+      @result.push(Book.new({:name => name, :id => id}))
     end
-    result
+    @result
   end
 
+  def self.find_by_consumer(c_id)
+    books = []
+    checkouts = DB.exec("SELECT books.* FROM books JOIN checkouts ON (books.id = checkouts.book_id) JOIN consumers ON (checkouts.consumer_id = consumers.id) WHERE consumers.id = #{c_id}")
+    checkouts.each() do |b|
+      name = b.fetch("name")
+      id = b.fetch("id").to_i
+      books.push(Book.new({:name => name, :id => id}))
+    end
+    books
+  end
+
+
+  def self.find_by_author(auth_id)
+    books= []
+    authors_books = DB.exec("SELECT books.* FROM books JOIN authors_books ON (books.id = authors_books.book_id) JOIN authors ON (authors_books.author_id = authors.id) WHERE authors.id = #{auth_id}")
+    authors_books.each() do |b|
+      name = b.fetch("name")
+      id = b.fetch("id").to_i
+      books.push(Book.new({:name => name, :id => id}))
+    end
+    books
+  end
+
+  def authors
+    Author.find_by_book(self.id)
+  end
 end
-  
-#   def self.find_by_author
-#     books = []
-#     returned_books = DB.exec("SELECT athletes.* FROM sponsors
-# JOIN endorsements ON (sponsors.id = endorsements.sponsor_id)
-# JOIN athletes ON (endorsements.athlete_id = athletes.id)
-# WHERE sponsors.id = 1;")
-#     returned_books.each() do |book|
-
-
-  # def self.find_by_author(auth_id)
-  #   books = []
-  #   returned_books = DB.exec("SELECT * FROM authors_books WHERE author_id = #{auth_id};")
-  #   binding.pry
-  #   returned_books.each() do |book|
-  #     # name = book.fetch("name")
-  #     book.any?
-  #       book_id = book.fetch("id").to_i
-  #       book_to_push = DB.exec("select * FROM books WHERE id = #{book_id}")
-  #     name = book.fetch("name")
-  #     id = book_to_push.fetch("id")
-  #     books.push(Book.new({:name => name, :id => id}))
-  #   end
-  #  books
-  # end
-
-  
-
-
-# def self.find_by_artist(art_id)
-  #   albums = []
-  #   returned_albums = DB.exec("SELECT * FROM albums_artists WHERE artist_id = #{art_id};")
-  #   returned_albums.each() do |album|
-  #   name = album.fetch("name")
-  #   id = album.fetch('id').to_i
-  #   albums.push(Album.new({:name => name, :artist_id => art_id, :id => id}))
-  #   end
-  #   albums
-  # end

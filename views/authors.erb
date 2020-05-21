@@ -1,0 +1,11 @@
+<h3>Authors who currently have books in our library:</h3>
+
+<% if @authors %>
+<ul>
+  <% @authors.each do |author|%>
+  <li><a href="/authors/<%= author.id%>"><%= author.name %></a></li>
+  <% end %>
+</ul>
+<% else %>
+  <p>Weird!  Our library must be out of books because we are not currently tracking any authors.</p>
+<% end %>

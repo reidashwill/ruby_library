@@ -43,19 +43,6 @@ class Author
     DB.exec("INSERT INTO authors_books (book_id, author_id) VALUES (#{book_id}, #{@id});")
   end
 
-  # def update(attributes)
-  #   if (attributes.has_key?(:name)) && (attributes.fetch(:name) != nil)
-  #     @name = attributes.fetch(:name)
-  #     DB.exec("UPDATE authors SET name = '#{@name}' WHERE id = #{@id};")
-  #   elsif (attributes.has_key?(:author_name)) && (attributes.fetch(:author_name) != nil)
-  #     author_name = attributes.fetch(:author_name)
-  #     author = DB.exec("SELECT * FROM authors WHERE lower(name)='#{author_name.downcase}';").first
-  #     if author != nil
-  #       DB.exec("INSERT INTO authors_books (book_id, author_id) VALUES (#{@book['id'].to_i}, #{@id});")
-  #     end
-  #   end
-  # end
-
   def delete 
     DB.exec("DELETE FROM authors_books WHERE author_id = #{@id};")
     DB.exec("DELETE FROM authors WHERE id = #{@id};")
@@ -82,5 +69,17 @@ class Author
   def books
     Book.find_by_author(self.id)
   end
+
+  def self.find_by_book(b_id)
+    authors = []
+    authors_books = DB.exec("SELECT authors.* FROM authors JOIN authors_books ON (authors.id = authors_books.author_id) JOIN books ON (authors_books.book_id = books.id) WHERE books.id = #{b_id}")
+    authors_books.each() do |a|
+      name = a.fetch("name")
+      id = a.fetch("id").to_i
+      authors.push(Author.new({:name => name, :id => id}))
+    end
+    authors
+  end
+
 
 end

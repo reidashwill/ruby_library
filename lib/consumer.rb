@@ -62,6 +62,10 @@ class Consumer
     result
   end
 
+  def checkout(book_id)
+    DB.exec("INSERT INTO checkouts (consumer_id, book_id) VALUES (#{id},#{book_id});")
+  end
+
   def checked_out
     Book.find_by_consumer(self.id)
   end
