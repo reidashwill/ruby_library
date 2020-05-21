@@ -15,14 +15,18 @@
             <li class="active"><a href="/home">Home</a></li>
             <li><a href="/books">Our Books</a></li>
             <li><a href="/authors">Our Authors</a></li>
+            <li>
+              <form action="books/search_results">
+                <div class="form-group" >
+                  <input class="form-control" id="book_search" name="book_search" type="text" placeholder="Search by book">
+                  </div>
+                  <button class="btn-success" type="submit">Submit</button>
+                  </form>
+              </li>
           </ul>
         </div>
 </nav>
       <%= yield %>
-      
-      <form class="form-group" action="books/search_results" method="get">
-        <input class="form-control" id="book_search" name="book_search" type="text" placeholder="Search by book">
-        <button class="btn-success" type="submit">Submit</button>
 
     </div>
   </body>
